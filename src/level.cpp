@@ -11,3 +11,7 @@ void Level::Draw() {
 
   chunk_->Draw();
 }
+
+void Level::SetCameraPos(Camera& camera) {
+  camera.UploadTo(chunk_shader_);
+}
