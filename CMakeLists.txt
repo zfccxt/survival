@@ -14,10 +14,13 @@ set(CMAKE_EXE_LINKER_FLAGS_DEBUG "${CMAKE_EXE_LINKER_FLAGS_DEBUG}")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DCALCIUM_BUILD_RELEASE=1")
 set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE}")
 
-set(SOURCE_FILES src/main.cpp)
+set(SOURCE_FILES src/main.cpp src/chunk.hpp src/chunk.cpp)
 source_group("src" FILES ${SOURCE_FILES})
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+set(SHADER_FILES src/shaders/chunk_shader.vert.glsl src/shaders/chunk_shader.frag.glsl)
+source_group("src/shaders" FILES ${SHADER_FILES})
+
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${SHADER_FILES})
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 
 add_subdirectory(depend/calcium)
