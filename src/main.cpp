@@ -4,7 +4,7 @@
 #include "level.hpp"
 
 int main() {
-  auto context = cl::Context::CreateContext();
+  auto context = cl::Context::CreateContext(cl::Backend::kVulkan);
   
   auto window = context->CreateWindow();
 
