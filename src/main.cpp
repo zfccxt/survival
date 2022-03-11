@@ -7,11 +7,8 @@ int main() {
   auto context = cl::Context::CreateContext();
   
   auto window = context->CreateWindow();
-  Camera camera(window);
-  auto recalc_projection = [&](){ camera.CalculateProjection(window->GetAspectRatio()); };
-  window->SetResizeCallback(recalc_projection);
-  recalc_projection();
 
+  Camera camera(window);
   Level level(context);
 
   while (window->IsOpen()) {

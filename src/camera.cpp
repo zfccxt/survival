@@ -8,10 +8,16 @@
 #include "key_bindings.hpp"
 
 Camera::Camera(std::shared_ptr<cl::Window>& window) {
+  auto recalc_projection = [&](){ CalculateProjection(window->GetAspectRatio()); };
+  window->SetResizeCallback(recalc_projection);
+  window->SetKeyPressCallback(cl::KeyCode::kE, [&](){ window->ToggleCursorLock(); });
+  recalc_projection();
+
   window->SetMouseMoveCallback([&](float dx, float dy){
     if (window->IsCursorLocked()) {
       rot_.x += dx * ControlSettings::camera_rot_speed * 0.03f;
       rot_.y -= dy * ControlSettings::camera_rot_speed * 0.03f;
+      flag_recalc_ = true;
     }
   });
 }
