@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map>
+
 #include <calcium.hpp>
 
 #include "camera.hpp"
@@ -13,7 +15,11 @@ public:
   void SetCameraPos(Camera& camera);
 
 private:
+  void LoadChunk(int x, int z);
+
+private:
+  cl::Context* context_;
   std::shared_ptr<cl::Shader> chunk_shader_;
 
-  std::unique_ptr<Chunk> chunk_;
+  std::map<std::pair<int, int>, std::unique_ptr<Chunk>> chunk_map_;
 };

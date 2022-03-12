@@ -1,6 +1,6 @@
 #include "chunk.hpp"
 
-Chunk::Chunk(std::shared_ptr<cl::Context>& context, std::shared_ptr<cl::Shader>& shader, int x, int z) : x_(x), z_(z) {
+Chunk::Chunk(cl::Context* context, std::shared_ptr<cl::Shader>& shader, int x, int z) : x_(x), z_(z) {
   LoadChunkData();
   LoadMesh(context, shader);
 }
@@ -13,7 +13,7 @@ void Chunk::LoadChunkData() {
   }
 }
 
-void Chunk::LoadMesh(std::shared_ptr<cl::Context>& context, std::shared_ptr<cl::Shader>& shader) {
+void Chunk::LoadMesh(cl::Context* context, std::shared_ptr<cl::Shader>& shader) {
   cl::MeshCreateInfo mesh_info;
   mesh_info.vertex_input_layout = shader->GetInputLayout();
 
@@ -21,9 +21,9 @@ void Chunk::LoadMesh(std::shared_ptr<cl::Context>& context, std::shared_ptr<cl::
 
   // Create floors
   for (size_t x = 0; x < kChunkSize; ++x) {
-    float x_offs = x; // + x_ * kChunkSize;
+    float x_offs = x + x_ * kChunkSize;
     for (size_t z = 0; z < kChunkSize; ++z) {
-    float z_offs = z; // + z_ * kChunkSize;
+      float z_offs = z + z_ * kChunkSize;
 
       std::vector<float> vertices = {
       //       x        y           z        u     v

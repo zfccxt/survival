@@ -1,15 +1,28 @@
 #include "level.hpp"
 
-Level::Level(std::shared_ptr<cl::Context>& context) {
+constexpr int kDrawDistance = 2;
+
+Level::Level(std::shared_ptr<cl::Context>& context) : context_(context.get()) {
   chunk_shader_ = context->CreateShader("res/shaders/chunk_shader.vert.spv", "res/shaders/chunk_shader.frag.spv");
 
-  chunk_ = std::make_unique<Chunk>(context, chunk_shader_, 0, 0);
+  for (int x = -kDrawDistance; x < kDrawDistance; ++x) {
+    for (int z = -kDrawDistance; z < kDrawDistance; ++z) {
+      LoadChunk(x, z);
+    }
+  }
+
+}
+
+void Level::LoadChunk(int x, int z) {
+  chunk_map_.emplace(std::make_pair(x, z), std::make_unique<Chunk>(context_, chunk_shader_, x, z));
 }
 
 void Level::Draw() {
   chunk_shader_->Bind();
 
-  chunk_->Draw();
+  for (const auto& chunk : chunk_map_) {
+    chunk.second->Draw();
+  }
 }
 
 void Level::SetCameraPos(Camera& camera) {
