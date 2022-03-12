@@ -1,5 +1,5 @@
 #pragma once
 
 enum class FloorTile {
-  kNone, kWoodPlanks,
+  kNone, kWoodPlanks, kGrass,
 };

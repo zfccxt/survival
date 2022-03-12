@@ -7,6 +7,7 @@ int main() {
   auto context = cl::Context::CreateContext(cl::Backend::kVulkan);
   
   auto window = context->CreateWindow();
+  window->SetKeyPressCallback(cl::KeyCode::kEscape, [&]() { window->Close(); });
 
   Camera camera(window);
   Level level(context);
