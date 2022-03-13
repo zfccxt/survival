@@ -4,12 +4,13 @@
 #include "level.hpp"
 
 int main() {
-  auto context = cl::Context::CreateContext(cl::Backend::kVulkan);
+  auto context = cl::Context::CreateContext(cl::Backend::kOpenGL);
   
   auto window = context->CreateWindow();
   window->SetKeyPressCallback(cl::KeyCode::kEscape, [&]() { window->Close(); });
 
   Camera camera(window);
+  camera.SetPosition(0.0f, 1.76f, 0.0f);
   Level level(context);
 
   while (window->IsOpen()) {
