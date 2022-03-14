@@ -6,7 +6,7 @@
 
 class Chunk {
 public:
-  Chunk(std::shared_ptr<cl::Context>& context, std::shared_ptr<cl::Shader>& chunk_shader, std::shared_ptr<cl::Texture>& floor_texture, int x, int z);
+  Chunk(std::shared_ptr<cl::Context>& context, std::shared_ptr<cl::Shader>& chunk_shader, int x, int z);
 
   void Draw();
 

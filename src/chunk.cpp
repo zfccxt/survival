@@ -2,8 +2,8 @@
 
 #include <random>
 
-Chunk::Chunk(std::shared_ptr<cl::Context>& context, std::shared_ptr<cl::Shader>& chunk_shader, std::shared_ptr<cl::Texture>& floor_texture, int x, int z)
-    : x_(x), z_(z), context_(context), chunk_shader_(chunk_shader), floor_texture_(floor_texture) {
+Chunk::Chunk(std::shared_ptr<cl::Context>& context, std::shared_ptr<cl::Shader>& chunk_shader, int x, int z)
+    : x_(x), z_(z), context_(context), chunk_shader_(chunk_shader) {
   LoadChunkData();
   LoadMesh();
 }
@@ -34,11 +34,11 @@ void Chunk::LoadMesh() {
       }
 
       std::vector<float> vertices = {
-      //       x        y           z        u     v
-        x_offs + 0.0f, 0.0f, z_offs + 0.0f, 0.0f, 0.0f,
-        x_offs + 1.0f, 0.0f, z_offs + 0.0f, 1.0f, 0.0f,
-        x_offs + 0.0f, 0.0f, z_offs + 1.0f, 0.0f, 1.0f,
-        x_offs + 1.0f, 0.0f, z_offs + 1.0f, 1.0f, 1.0f,
+      //       x        y           z        u     v                   w
+        x_offs + 0.0f, 0.0f, z_offs + 0.0f, 0.0f, 0.0f, FloorTileProps::TextureArrayIndex(current_floor_tile),
+        x_offs + 1.0f, 0.0f, z_offs + 0.0f, 1.0f, 0.0f, FloorTileProps::TextureArrayIndex(current_floor_tile),
+        x_offs + 0.0f, 0.0f, z_offs + 1.0f, 0.0f, 1.0f, FloorTileProps::TextureArrayIndex(current_floor_tile),
+        x_offs + 1.0f, 0.0f, z_offs + 1.0f, 1.0f, 1.0f, FloorTileProps::TextureArrayIndex(current_floor_tile)
       };
       mesh_info.vertices.insert(mesh_info.vertices.end(), vertices.begin(), vertices.end());
 
