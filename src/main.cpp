@@ -4,7 +4,7 @@
 #include "level.hpp"
 
 int main() {
-  auto context = cl::Context::CreateContext(cl::Backend::kOpenGL);
+  auto context = cl::Context::CreateContext(cl::Backend::kVulkan);
   
   auto window = context->CreateWindow();
   window->SetKeyPressCallback(cl::KeyCode::kEscape, [&]() { window->Close(); });
