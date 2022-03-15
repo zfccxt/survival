@@ -25,6 +25,8 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 
 add_subdirectory(depend/calcium)
 target_link_libraries(${PROJECT_NAME} PRIVATE calcium)
+add_subdirectory(depend/clx_imgui)
+target_link_libraries(${PROJECT_NAME} PRIVATE clx_imgui)
 
 target_include_directories(${PROJECT_NAME} PRIVATE src)
 

@@ -1,3 +1,6 @@
 [submodule "depend/calcium"]
 	path = depend/calcium
 	url = https://github.com/zfccxt/calcium
+[submodule "depend/clx_imgui"]
+	path = depend/clx_imgui
+	url = https://github.com/zfccxt/clx_imgui
