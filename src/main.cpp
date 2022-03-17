@@ -7,7 +7,7 @@
 
 int main() {
   cl::ContextCreateInfo context_info;
-  context_info.backend = cl::Backend::kOpenGL;
+  context_info.backend = cl::Backend::kVulkan;
   context_info.extensions = { clx::imgui::LoadExtension() };
   auto context = cl::Context::CreateContext(context_info);
   
@@ -16,9 +16,17 @@ int main() {
 
   Camera camera(window);
   camera.SetPosition(0.0f, 1.76f, 0.0f);
+
+  auto on_window_resize = [&](){
+    camera.CalculateProjection(window->GetAspectRatio());
+  };
+  window->SetResizeCallback(on_window_resize);
+  window->SetKeyPressCallback(cl::KeyCode::kE, [&](){ window->ToggleCursorLock(); });
+  on_window_resize();
+
   Level level(context);
 
-  ImGui::GetIO().IniFilename = nullptr;
+  Hud::SetHudInitialStyle();
 
   while (window->IsOpen()) {
     window->PollEvents();

@@ -9,3 +9,7 @@ namespace FloorTileProps {
 float TextureArrayIndex(FloorTile tile);
 
 }
+
+struct ChunkTile {
+  FloorTile floor = FloorTile::kNone;
+};

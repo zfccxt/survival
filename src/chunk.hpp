@@ -2,7 +2,7 @@
 
 #include <calcium.hpp>
 
-#include "floor_tile.hpp"
+#include "chunk_mesh_utils.hpp"
 
 class Chunk {
 public:
@@ -17,14 +17,15 @@ public:
 private:
   std::shared_ptr<cl::Context> context_;
   std::shared_ptr<cl::Shader> chunk_shader_;
-  std::shared_ptr<cl::Texture> floor_texture_;
 
 private:
   const static int kChunkSize = 16;
+  const static int kChunkHeightLimit = 4; // Building max stories
 
 private:
   std::shared_ptr<cl::Mesh> mesh_;
 
-  FloorTile floor_tiles_[kChunkSize][kChunkSize];
+  ChunkTile tiles_[kChunkSize][kChunkSize][kChunkHeightLimit];
+
   float x_, z_;
 };

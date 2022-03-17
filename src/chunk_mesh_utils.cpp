@@ -1,4 +1,4 @@
-#include "floor_tile.hpp"
+#include "chunk_mesh_utils.hpp"
 
 namespace FloorTileProps {
 

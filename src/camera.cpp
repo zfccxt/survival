@@ -8,10 +8,7 @@
 #include "key_bindings.hpp"
 
 Camera::Camera(std::shared_ptr<cl::Window>& window) {
-  auto recalc_projection = [&](){ CalculateProjection(window->GetAspectRatio()); };
-  window->SetResizeCallback(recalc_projection);
-  window->SetKeyPressCallback(cl::KeyCode::kE, [&](){ window->ToggleCursorLock(); });
-  recalc_projection();
+  CalculateProjection(window->GetAspectRatio());
   window->SetControllerDeadzone(0.3f);
 
   window->SetMouseMoveCallback([&](float dx, float dy){

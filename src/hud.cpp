@@ -4,6 +4,12 @@
 
 namespace Hud {
 
+void SetHudInitialStyle() {
+  ImGui::GetIO().IniFilename = nullptr;
+
+  // TODO: Set font and stuff
+}
+
 void DrawHudWindows() {
   clx::imgui::Begin();
 
