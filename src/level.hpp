@@ -19,8 +19,8 @@ private:
 
 private:
   std::shared_ptr<cl::Context> context_;
+
   std::shared_ptr<cl::Shader> chunk_shader_;
-  std::shared_ptr<cl::TextureArray> floor_texture_array_;
- 
+  std::shared_ptr<cl::TextureArray> chunk_texture_array_; 
   std::map<std::pair<int, int>, std::unique_ptr<Chunk>> chunk_map_;
 };

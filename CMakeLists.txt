@@ -14,7 +14,7 @@ set(CMAKE_EXE_LINKER_FLAGS_DEBUG "${CMAKE_EXE_LINKER_FLAGS_DEBUG}")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DCALCIUM_BUILD_RELEASE=1")
 set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE}")
 
-set(SOURCE_FILES src/main.cpp src/chunk.hpp src/chunk.cpp src/level.hpp src/level.cpp src/camera.hpp src/camera.cpp src/key_bindings.hpp src/key_bindings.cpp src/control_settings.hpp src/control_settings.cpp src/hud.hpp src/hud.cpp src/chunk_mesh_utils.hpp src/chunk_mesh_utils.cpp)
+set(SOURCE_FILES src/main.cpp src/chunk.hpp src/chunk.cpp src/level.hpp src/level.cpp src/camera.hpp src/camera.cpp src/key_bindings.hpp src/key_bindings.cpp src/control_settings.hpp src/control_settings.cpp src/hud.hpp src/hud.cpp src/chunk_mesh_utils.hpp src/chunk_mesh_utils.cpp src/tree_mesh.hpp src/tree_mesh.cpp)
 source_group("src" FILES ${SOURCE_FILES})
 
 set(SHADER_FILES src/shaders/chunk_shader.vert.glsl src/shaders/chunk_shader.frag.glsl)

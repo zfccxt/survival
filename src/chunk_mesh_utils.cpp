@@ -1,13 +1,12 @@
 #include "chunk_mesh_utils.hpp"
 
-namespace FloorTileProps {
+float TextureArrayIndex(TileObject t, TileObjectMeshPart m) {
+  switch (t) {
+    case TileObject::kFloorGrass:      return 1.0f;
+    case TileObject::kFloorWoodPlanks: return 2.0f;
 
-float TextureArrayIndex(FloorTile tile) {
-  switch (tile) {
-    case FloorTile::kWoodPlanks: return 0;
-    case FloorTile::kGrass:      return 1;
-    default:                     return 0;
+    case TileObject::kPropTree:        return m == TileObjectMeshPart::kTreeTrunk ? 4.0f : 3.0f;
+
+    default:                           return 0.0f;
   }
-}
-
 }

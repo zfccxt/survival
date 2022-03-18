@@ -15,7 +15,7 @@ int main() {
   window->SetKeyPressCallback(cl::KeyCode::kEscape, [&]() { window->Close(); });
 
   Camera camera(window);
-  camera.SetPosition(0.0f, 1.76f, 0.0f);
+  camera.SetPosition(0.0f, 1.6f, 0.0f);
 
   auto on_window_resize = [&](){
     camera.CalculateProjection(window->GetAspectRatio());

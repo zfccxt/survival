@@ -1,15 +1,24 @@
 #pragma once
 
-enum class FloorTile {
-  kNone, kWoodPlanks, kGrass,
+enum class TileObject {
+  kNone,
+
+  kFloorWoodPlanks,
+  kFloorGrass,
+
+  kPropTree,
 };
 
-namespace FloorTileProps {
+enum class TileObjectMeshPart {
+  kNone,
 
-float TextureArrayIndex(FloorTile tile);
+  kTreeLeaves,
+  kTreeTrunk,
+};
 
-}
+float TextureArrayIndex(TileObject, TileObjectMeshPart = TileObjectMeshPart::kNone);
 
 struct ChunkTile {
-  FloorTile floor = FloorTile::kNone;
+  TileObject floor = TileObject::kNone;
+  TileObject prop  = TileObject::kNone;
 };
